@@ -278,7 +278,7 @@ OATPP_MACRO_API_CONTROLLER_PARAM_INFO X
 #define ENDPOINT_INFO(NAME) \
 \
 std::shared_ptr<oatpp::web::server::api::Endpoint::Info> Z__ENDPOINT_CREATE_ADDITIONAL_INFO_##NAME() { \
-  auto info = Z__EDNPOINT_INFO_GET_INSTANCE_##NAME(); \
+  auto info = Z__ENDPOINT_INFO_GET_INSTANCE_##NAME(); \
   Z__ENDPOINT_ADD_INFO_##NAME(info); \
   return info; \
 } \
@@ -301,7 +301,7 @@ static typename std::shared_ptr<Handler<T>> Z__ENDPOINT_HANDLER_GET_INSTANCE_##N
   return handler; \
 } \
 \
-std::shared_ptr<oatpp::web::server::api::Endpoint::Info> Z__EDNPOINT_INFO_GET_INSTANCE_##NAME() { \
+std::shared_ptr<oatpp::web::server::api::Endpoint::Info> Z__ENDPOINT_INFO_GET_INSTANCE_##NAME() { \
   std::shared_ptr<oatpp::web::server::api::Endpoint::Info> info = getEndpointInfo(#NAME); \
   if(!info){ \
     info = oatpp::web::server::api::Endpoint::Info::createShared(); \
@@ -313,7 +313,7 @@ std::shared_ptr<oatpp::web::server::api::Endpoint::Info> Z__EDNPOINT_INFO_GET_IN
 #define OATPP_MACRO_API_CONTROLLER_ENDPOINT_DECL_0(NAME, METHOD, PATH)  \
 \
 EndpointInfoBuilder Z__CREATE_ENDPOINT_INFO_##NAME = [this](){ \
-  auto info = Z__EDNPOINT_INFO_GET_INSTANCE_##NAME(); \
+  auto info = Z__ENDPOINT_INFO_GET_INSTANCE_##NAME(); \
   info->name = #NAME; \
   info->path = ((m_routerPrefix != nullptr) ? m_routerPrefix + PATH : PATH); \
   info->method = METHOD; \
@@ -345,7 +345,7 @@ std::shared_ptr<oatpp::web::protocol::http::outgoing::Response> NAME()
 #define OATPP_MACRO_API_CONTROLLER_ENDPOINT_DECL_1(NAME, METHOD, PATH, ...)  \
 \
 EndpointInfoBuilder Z__CREATE_ENDPOINT_INFO_##NAME = [this](){ \
-auto info = Z__EDNPOINT_INFO_GET_INSTANCE_##NAME(); \
+auto info = Z__ENDPOINT_INFO_GET_INSTANCE_##NAME(); \
   info->name = #NAME; \
   info->path = ((m_routerPrefix != nullptr) ? m_routerPrefix + PATH : PATH); \
   info->method = METHOD; \
@@ -455,7 +455,7 @@ static typename std::shared_ptr<Handler<T>> Z__ENDPOINT_HANDLER_GET_INSTANCE_##N
   return handler; \
 } \
 \
-std::shared_ptr<oatpp::web::server::api::Endpoint::Info> Z__EDNPOINT_INFO_GET_INSTANCE_##NAME() { \
+std::shared_ptr<oatpp::web::server::api::Endpoint::Info> Z__ENDPOINT_INFO_GET_INSTANCE_##NAME() { \
   std::shared_ptr<oatpp::web::server::api::Endpoint::Info> info = getEndpointInfo(#NAME); \
   if(!info){ \
     info = oatpp::web::server::api::Endpoint::Info::createShared(); \
@@ -471,7 +471,7 @@ std::shared_ptr<oatpp::web::server::api::Endpoint::Info> Z__EDNPOINT_INFO_GET_IN
 #define OATPP_MACRO_API_CONTROLLER_ENDPOINT_ASYNC_DECL(NAME, METHOD, PATH)  \
 \
 EndpointInfoBuilder Z__CREATE_ENDPOINT_INFO_##NAME = [this](){ \
-  auto info = Z__EDNPOINT_INFO_GET_INSTANCE_##NAME(); \
+  auto info = Z__ENDPOINT_INFO_GET_INSTANCE_##NAME(); \
   info->name = #NAME; \
   info->path = PATH; \
   info->method = METHOD; \
